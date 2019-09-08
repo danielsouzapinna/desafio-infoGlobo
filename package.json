@@ -1,0 +1,22 @@
+{
+  "name": "desafio-infoglobo",
+  "version": "1.0.0",
+  "description": "Desafio infoGlobo, crawler em NodeJS + Docker + Restify",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "Docker",
+    "Restify"
+  ],
+  "author": "Daniel Pinna",
+  "license": "ISC",
+  "dependencies": {
+    "morgan": "^1.9.1",
+    "restify": "^8.4.0",
+    "winston": "^3.2.1",
+    "winston-daily-rotate-file": "^4.0.0"
+  }
+}
