@@ -5,6 +5,7 @@ const restifyPlugins  = require('restify').plugins;
 const config          = require('./config');
 const morgan          = require('morgan');
 const logger          = require('./winston-custom-log');
+const rjwt            = require('restify-jwt-community');
 
 const server = restify.createServer({
   name    : config.name,
@@ -12,6 +13,10 @@ const server = restify.createServer({
 });
 
 server.pre(restifyPlugins.pre.sanitizePath());
+
+server.use(rjwt(config.jwt).unless({
+  path: ['/', '/auth']
+}));
 
 server.use(restifyPlugins.jsonBodyParser({ mapParams: true }));
 server.use(restifyPlugins.acceptParser(server.acceptable));
