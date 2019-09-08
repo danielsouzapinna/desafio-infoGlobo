@@ -55,4 +55,5 @@ docker-compose stop
 
 #### Crawler
 * GET /crawler
+
 Authorization: Bearer TOKEN (Obtido na API de login)
