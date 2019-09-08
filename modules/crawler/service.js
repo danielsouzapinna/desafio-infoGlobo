@@ -16,6 +16,7 @@ class CrawlerService {
         let objectJSON = this.generateJSON(xmlData);
         resolve(objectJSON);
       } catch(err) {
+        this.logger.error(`CrawlerService::processData => Falha ao processar dados da URL.`);
         reject(err);
       }
     });
@@ -26,6 +27,7 @@ class CrawlerService {
     return new Promise((resolve, reject) => {
       this.request(url, function(error, response, html) {
         if (error) {
+          this.logger.error(`CrawlerService::getDataFromXML => Erro ao recuperar dados da URL.`);
           reject('Erro ao realizar leitura da URL');
         }
         resolve(html);
@@ -34,6 +36,7 @@ class CrawlerService {
   }
 
   generateJSON(xmlData) {
+    this.logger.info(`CrawlerService::generateJSON => Iniciando criação de JSON.`);
     let $ = this.cheerio.load(xmlData, { normalizeWhitespace: true, xmlMode: true, decodeEntities: true });
     let json = { 'feed': [] };
 

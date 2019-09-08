@@ -15,10 +15,11 @@ class AuthController {
       return next();
     }
 
-    this.service.loggin(user.username, user.password).then(doc => {
+    this.service.login(user.username, user.password).then(doc => {
+      this.logger.info('AuthController::login => Autenticação de usuário realizada com sucesso.');
       res.send(200, doc);
     }).catch((err) => {
-      this.logger.error(`AuthController::authenticate => Falha ao autenticar usuário: ${err}`);
+      this.logger.error(`AuthController::login => Falha ao autenticar usuário: ${err}`);
       res.send(500, { msg: 'failure', status: err });
       return next();
     });
