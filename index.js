@@ -11,6 +11,14 @@ const server = restify.createServer({
   version : config.version
 });
 
+server.pre(restifyPlugins.pre.sanitizePath());
+
+server.use(restifyPlugins.jsonBodyParser({ mapParams: true }));
+server.use(restifyPlugins.acceptParser(server.acceptable));
+server.use(restifyPlugins.queryParser({ mapParams: true }));
+server.use(restifyPlugins.gzipResponse());
+server.use(restifyPlugins.throttle({ burst:10, rate:1, ip:true }));
+
 server.use(morgan('{"DATA=>": ":date[clf]", "HTTP METHOD=>": ":method", "STATUS=>": ":status", "URL=>": ":url",  "TEMPO=>": ":response-time", "USER_AGENT=>": ":user-agent"}', {
   stream: {
     write: (message) =>{
