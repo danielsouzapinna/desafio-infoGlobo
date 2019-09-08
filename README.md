@@ -53,8 +53,6 @@ docker-compose stop
 }
 ```
 
+#### Crawler
 * GET /crawler
-
-#### Adicionar
-* POST /planets
 Authorization: Bearer TOKEN (Obtido na API de login)
