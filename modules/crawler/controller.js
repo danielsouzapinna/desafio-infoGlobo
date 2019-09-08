@@ -10,7 +10,7 @@ class CrawlerController {
     this.logger.info('CrawlerController::start => Iniciando crawler...');
 
     this.service.processData(this.url).then(doc => {
-      res.send(200, { msg: 'success', status: doc });
+      res.send(200, { doc });
     }).catch((err) => {
       this.logger.error(`CrawlerController::start => Falha ao processar a URL: ${this.url}`);
       console.log("error: ", err)
