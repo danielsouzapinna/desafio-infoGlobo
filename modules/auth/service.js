@@ -9,18 +9,14 @@ class AuthService {
   login(username, password) {
     this.logger.info(`AuthService::login => Iniciando validação do usuário.`);
     return new Promise(async(resolve, reject) => {
-      try {
-        if (username === "infoglobo", password === "admin123") {
-          this.logger.info(`AuthService::login => Validação de usuário realizada com sucesso.`);
-          let user = { uid: 1, name: 'Info-Globo', admin: true };
-          let token = this.generateToken(user);
-          resolve({ token })
-        }
-        this.logger.error(`AuthService::login => Falha ao realizar validação de usuário.`);
-        reject("Sorry credential invalid");
-      } catch(err) {
-        reject(err);
+      if (username === "infoglobo" && password === "admin123") {
+        this.logger.info(`AuthService::login => Validação de usuário realizada com sucesso.`);
+        let user = { uid: 1, name: 'Info-Globo', admin: true };
+        let token = this.generateToken(user);
+        resolve({ token })
       }
+      this.logger.error(`AuthService::login => Falha ao realizar validação de usuário.`);
+      reject("Sorry credential invalid");
     });
   }
 
