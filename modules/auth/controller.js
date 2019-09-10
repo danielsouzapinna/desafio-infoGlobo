@@ -15,11 +15,14 @@ class AuthController {
       return next();
     }
 
-    this.service.login(user.username, user.password).then(doc => {
+    return this.service.login(user.username, user.password).then(doc => {
       this.logger.info('AuthController::login => Autenticação de usuário realizada com sucesso.');
       res.send(200, doc);
     }).catch((err) => {
       this.logger.error(`AuthController::login => Falha ao autenticar usuário: ${err}`);
+      if (err == "Sorry credential invalid") {
+        res.send(200, { msg: 'Login failure', status: err });
+      }
       res.send(500, { msg: 'failure', status: err });
       return next();
     });
