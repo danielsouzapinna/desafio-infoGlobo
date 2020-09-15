@@ -8,6 +8,7 @@ if (!existsSync("logs")) {
     mkdirSync("logs");
 }
 
+console.log("teste")
 const tsFormat = () => (new Date()).toLocaleTimeString();
 
 const logger = winston.createLogger({
