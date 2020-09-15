@@ -57,3 +57,5 @@ docker-compose stop
 * GET /crawler
 
 Authorization: Bearer TOKEN (Obtido na API de login)
+
+para teste do ci
